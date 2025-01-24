@@ -1,0 +1,44 @@
+\label{sec:macro}
+%%
+%%
+\usetikzlibrary{fadings}
+\renewcommand\footnoterule{
+  \noindent
+  \kern-3pt
+  \begin{tikzpicture}[baseline=-10pt]
+    \fill[black] (0,0) rectangle (.6\columnwidth,0.01);
+  \end{tikzpicture}
+  \kern2.6pt
+}
+\setCJKmainfont{標楷體} 							%設定中文為系統上的字型，而英文不去更動，使用原TeX字型
+\setmainfont{Times New Roman}
+\def\thesection{\arabic{section}}
+\makeatletter
+\let\@afterindentfalse\@afterindenttrue
+\@afterindenttrue
+\renewcommand{\figurename}{圖}
+\renewcommand{\tablename}{表}
+\renewcommand\abstract{%
+}
+\renewcommand\IEEEkeywords{%
+    \parindent=0pt
+}
+\renewcommand\section{%
+  \@startsection{section}{1}%
+                {\z@}%
+                {-3.5ex \@plus -1ex \@minus -.2ex}%
+                {2.3ex \@plus.2ex}%
+                {\normalfont\fontsize{12}{0}\bfseries}%
+}
+\renewcommand\subsection{%
+  \@startsection{subsection}{2}%
+                {\z@}%
+                {-3.25ex\@plus -1ex \@minus -.2ex}%
+                {1sp}% No space after subsections
+                {\normalfont\normalsize\fontsize{11}{0}\bfseries}% normal size, boldface
+}
+\makeatother
+\setlength{\parindent}{2em}
+\newcommand{\figW}{0.5\textwidth}
+\newcommand{\figH}{5cm}
+
