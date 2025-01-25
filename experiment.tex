@@ -41,7 +41,7 @@
         \\
         \\在ResNet的模型訓練當中，觀察confusion matrix與其指標：
         \\1. 對於同一個class，在loss曲線有收斂完成的情況下，precision與recall都達到0.96左右，而未完成收斂的情況則是precision明顯高於recall。
-        \\2. 綜觀全部的class，最差的表現通常落在open、good，而以open的情況又較差\ref{fig:ResNet_confusion_matrix}。
+        \\2. 以confusion matrix綜觀全部的classes，最差的表現通常落在open、good，而以open的情況又較差\ref{fig:ResNet_confusion_matrix}。
     \end{abstract}
     %
     %
@@ -49,17 +49,17 @@
         \hspace{2em}
         \\SqueezeNet
         \\在SqueezeNet的模型訓練當中，觀察accurracy、loss曲線：
-        \\1. SqueezeNet在不論是有無使用GAN進行擴充的資料集下，loss曲線幾乎都有收斂，除了在batch size為8與learning rate為1e-3，以本次實驗來說batch size極小learning rate極大的情況下，loss曲線完全沒有收斂，甚至是模型完全沒有學習到特徵。
-        \\2. 而在learning rate為1e-3的情況下，多數的loss曲線會在epoch為10左右出現較大的起伏，進而影響到後面的模型收斂與最後的準確率。
-        \\3. 準確度上因為多數情況下loss曲線都有收斂，所以準確度普遍落在0.96左右，在learning rate為1e-3，並且最後有收斂的情況下，準確率在0.69左右。
+        \\1. SqueezeNet在不論是有無使用GAN進行擴充的資料集下，loss曲線幾乎都有收斂\ref{fig:SqueezeNet_convergence_loss_curve}，除了在batch size為8與learning rate為1e-3，以本次實驗來說batch size極小learning rate極大的情況下，loss曲線完全沒有收斂\ref{fig:SqueezeNet_unconvergence_loss_curve}，甚至是模型完全沒有學習到特徵。
+        \\2. 而在learning rate為1e-3的情況下，多數的loss曲線會在epoch為10左右出現較大的起伏\ref{fig:SqueezeNet_unconvergence_loss_curve_1e-3}，進而影響到後面的模型收斂與最後的準確率。
+        \\3. 準確度上因為多數情況下loss曲線都有收斂，所以準確度普遍落在0.96左右\ref{fig:SqueezeNet_accuracy_curve_0.96}，在learning rate為1e-3，並且最後有收斂的情況下，準確率在0.69左右\ref{fig:SqueezeNet_accuracy_curve_0.69}。
         \\4. 針對有使用GAN的資料集，在loss曲線有收斂完成的情況下，準確率與無使用GAN的資料集無明顯差異。 
         \\
         \\在SqueezeNet的模型訓練當中，觀察confusion matrix與其指標：
         \\1. 對於同一個class，在loss曲線有收斂完成的情況下，precision與recall都達到0.96左右，而未完成收斂的情況則是precision與recall數據持平，表示模型並沒有完整學習到特徵。
-        \\2. 綜觀全部的class，最差的表現通常落在open、good，又以open的情況又較差。
+        \\2. 以confusion matrix綜觀全部的classes，最差的表現通常落在open、good，又以open的情況又較差\ref{fig:SqueezeNet_confuson_matrix}。
     \end{abstract}
     %
-    %    
+    %   ResNet Figure
     \begin{figure}[!t]
         \centering
         \includegraphics[width=0.45\textwidth]{../ResNet/runs/colorless_with_GAN/Fold2/train_e50_b64_lr0.001/train_valid_loss_curve.png}
@@ -91,6 +91,53 @@
         \label{fig:ResNet_confuson_matrix}
     \end{figure}
     %
+    %   SqueezeNet Figure
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b32_lr0.0001/train_valid_loss_curve.png}
+        \caption{SqueezeNet已收斂loss曲線}
+        \label{fig:SqueezeNet_convergence_loss_curve}
+    \end{figure}
     %
-    
+    %
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b8_lr0.001/train_valid_loss_curve.png}
+        \caption{SqueezeNet之loss曲線表示模型無學習到特徵}
+        \label{fig:SqueezeNet_unconvergence_loss_curve}
+    \end{figure}
+    %
+    %
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b32_lr0.001/train_valid_loss_curve.png}
+        \caption{SqueezeNet之loss曲線收斂但較不穩}
+        \label{fig:SqueezeNet_unconvergence_loss_curve_1e-3}
+    \end{figure}
+    %
+    %
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b32_lr0.0001/train_valid_accuracy_curve.png}
+        \caption{ResNet Accuracy曲線}
+        \label{fig:SqueezeNet_accuracy_curve_0.96}
+    \end{figure}
+    %
+    %
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b32_lr0.001/train_valid_accuracy_curve.png}
+        \caption{ResNet Accuracy曲線}
+        \label{fig:SqueezeNet_accuracy_curve_0.69}
+    \end{figure}
+    %
+    %
+    \begin{figure}[!t]
+        \centering
+        \includegraphics[width=0.45\textwidth]{../SqueezeNet/runs/colorless_with_GAN/Fold2/train_e50_b32_lr0.0001/confusion_matrix.png}
+        \caption{ResNet Confusion Matrix}
+        \label{fig:SqueezeNet_confuson_matrix}
+    \end{figure}
+    %
+    %
         
